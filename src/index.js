@@ -11,7 +11,7 @@ import {
 } from 'searchkit';
 
 export default function(props) {
-  const { apiUrl, prefixQueryFields } = props;
+  const { apiUrl, prefixQueryFields, filters } = props;
   const searchkit = new SearchkitManager(apiUrl);
 
   const filterTypes = {
@@ -23,26 +23,6 @@ export default function(props) {
     dynamic: DynamicRangeFilter,
   }
 
-  const filters = [
-    {
-      type: 'hierarchical',
-      props: {
-        id: 'categories',
-        fields: ['type.raw', 'genres.raw'],
-        title: 'Categories!!!',
-      },
-    },
-    {
-      type: 'refinement',
-      props: {
-        id: 'actors',
-        title: 'Actors',
-        field: 'actors.raw',
-        operator: 'AND',
-        size: 10
-      },
-    }
-  ];
   const filterElements = filters.map(def =>
     React.createElement(
       filterTypes[def.type],
