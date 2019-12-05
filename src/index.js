@@ -1,9 +1,21 @@
 import React, {Component} from 'react'
 
+import {
+    SearchkitManager, SearchkitProvider, SearchBox, Hits
+} from 'searchkit';
+
+
+const searchkit = new SearchkitManager("/");
+
 export default class extends Component {
   render() {
-    return <div>
-      <h2>Welcome to React components</h2>
-    </div>
+    return (
+      <SearchkitProvider searchkit={searchkit}>
+          <div>
+              <SearchBox/>
+              <Hits/>
+          </div>
+      </SearchkitProvider>
+    );
   }
 }
