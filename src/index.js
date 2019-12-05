@@ -3,35 +3,53 @@ import React, {Component} from 'react'
 import {
     SearchkitManager, SearchkitProvider, SearchBox,
     HierarchicalMenuFilter, RefinementListFilter, LayoutResults,
+    MenuFilter, RangeFilter, NumericRefinementListFilter,
+    DynamicRangeFilter,
     ActionBar, ActionBarRow, HitsStats, SelectedFilters,
     ResetFilters, MovieHitsGridItem, NoHits,
     Hits, Layout, TopBar, LayoutBody, SideBar
 } from 'searchkit';
 
-
 export default function(props) {
   const { apiUrl, prefixQueryFields } = props;
   const searchkit = new SearchkitManager(apiUrl);
-  const filters = [
-    React.createElement(
-      HierarchicalMenuFilter,
-      {
+
+  const filterTypes = {
+    hierarchical: HierarchicalMenuFilter,
+    refinement: RefinementListFilter,
+    menu: MenuFilter,
+    range: RangeFilter,
+    numeric: NumericRefinementListFilter,
+    dynamic: DynamicRangeFilter,
+  }
+
+  const filterDefs = [
+    {
+      type: 'hierarchical',
+      props: {
+        id: 'categories',
         fields: ['type.raw', 'genres.raw'],
-        title: 'Categories',
-        id: 'categories'
+        title: 'Categories!!!',
       },
-    ),
-    React.createElement(
-      RefinementListFilter,
-      {
+    },
+    {
+      type: 'refinement',
+      props: {
         id: 'actors',
         title: 'Actors',
         field: 'actors.raw',
         operator: 'AND',
         size: 10
       },
-    ),
-  ]
+    }
+  ];
+  const filters = filterDefs.map(def =>
+    React.createElement(
+      filterTypes[def.type],
+      def.props
+    )
+  );
+
   return (
     <SearchkitProvider searchkit={searchkit}>
       <Layout>
