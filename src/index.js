@@ -11,7 +11,7 @@ import {
 } from 'searchkit';
 
 export default function(props) {
-  const { apiUrl, prefixQueryFields, filters } = props;
+  const { apiUrl, prefixQueryFields, filters, sourceFilter, hitsPerPage } = props;
   const searchkit = new SearchkitManager(apiUrl);
 
   const filterTypes = {
@@ -52,8 +52,8 @@ export default function(props) {
               </ActionBarRow>
 
             </ActionBar>
-            <Hits mod="sk-hits-list" hitsPerPage={10} itemComponent={MovieHitsGridItem}
-              sourceFilter={["title", "poster", "imdbId"]}/>
+            <Hits mod="sk-hits-list" hitsPerPage={hitsPerPage} itemComponent={MovieHitsGridItem}
+              sourceFilter={sourceFilter}/>
             <NoHits/>
           </LayoutResults>
         </LayoutBody>
