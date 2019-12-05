@@ -10,28 +10,37 @@ import {
 
 
 export default function(props) {
-  const { api_url } = props;
-  const searchkit = new SearchkitManager(api_url);
+  const { apiUrl, prefixQueryFields } = props;
+  const searchkit = new SearchkitManager(apiUrl);
+  const filters = [
+    React.createElement(
+      HierarchicalMenuFilter,
+      {
+        fields: ['type.raw', 'genres.raw'],
+        title: 'Categories',
+        id: 'categories'
+      },
+    ),
+    React.createElement(
+      RefinementListFilter,
+      {
+        id: 'actors',
+        title: 'Actors',
+        field: 'actors.raw',
+        operator: 'AND',
+        size: 10
+      },
+    ),
+  ]
   return (
     <SearchkitProvider searchkit={searchkit}>
       <Layout>
-          <SearchBox
-            autofocus={true}
-            searchOnChange={true}
-            prefixQueryFields={["actors^1","type^2","languages","title^10"]}/>
+        <SearchBox
+          autofocus={true}
+          searchOnChange={true}
+          prefixQueryFields={prefixQueryFields}/>
         <LayoutBody>
-          <SideBar>
-            <HierarchicalMenuFilter
-              fields={["type.raw", "genres.raw"]}
-              title="Categories"
-              id="categories"/>
-            <RefinementListFilter
-              id="actors"
-              title="Actors"
-              field="actors.raw"
-              operator="AND"
-              size={10}/>
-          </SideBar>
+          <SideBar>{filters}</SideBar>
           <LayoutResults>
             <ActionBar>
 
