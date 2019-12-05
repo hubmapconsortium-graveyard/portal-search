@@ -23,7 +23,7 @@ export default function(props) {
     dynamic: DynamicRangeFilter,
   }
 
-  const filterDefs = [
+  const filters = [
     {
       type: 'hierarchical',
       props: {
@@ -43,7 +43,7 @@ export default function(props) {
       },
     }
   ];
-  const filters = filterDefs.map(def =>
+  const filterElements = filters.map(def =>
     React.createElement(
       filterTypes[def.type],
       def.props
@@ -58,7 +58,7 @@ export default function(props) {
           searchOnChange={true}
           prefixQueryFields={prefixQueryFields}/>
         <LayoutBody>
-          <SideBar>{filters}</SideBar>
+          <SideBar>{filterElements}</SideBar>
           <LayoutResults>
             <ActionBar>
 
