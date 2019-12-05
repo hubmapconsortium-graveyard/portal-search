@@ -16,12 +16,10 @@ export default class extends Component {
     return (
       <SearchkitProvider searchkit={searchkit}>
         <Layout>
-          <TopBar>
             <SearchBox
               autofocus={true}
               searchOnChange={true}
               prefixQueryFields={["actors^1","type^2","languages","title^10"]}/>
-          </TopBar>
           <LayoutBody>
             <SideBar>
               <HierarchicalMenuFilter
