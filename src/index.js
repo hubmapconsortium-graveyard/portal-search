@@ -48,7 +48,7 @@ export default class extends Component {
                 </ActionBarRow>
 
               </ActionBar>
-              <Hits mod="sk-hits-grid" hitsPerPage={10} itemComponent={MovieHitsGridItem}
+              <Hits mod="sk-hits-list" hitsPerPage={10} itemComponent={MovieHitsGridItem}
                 sourceFilter={["title", "poster", "imdbId"]}/>
               <NoHits/>
             </LayoutResults>
