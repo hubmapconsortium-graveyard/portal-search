@@ -10,6 +10,14 @@ import {
     Hits, Layout, TopBar, LayoutBody, SideBar
 } from 'searchkit';
 
+function ItemComponent(props) {
+  return (
+    <pre>
+      {JSON.stringify(props, false, 2)}
+    </pre>
+  );
+}
+
 export default function(props) {
   const { apiUrl, prefixQueryFields, filters, sourceFilter, hitsPerPage } = props;
   const searchkit = new SearchkitManager(apiUrl);
@@ -52,7 +60,7 @@ export default function(props) {
               </ActionBarRow>
 
             </ActionBar>
-            <Hits mod="sk-hits-list" hitsPerPage={hitsPerPage} itemComponent={MovieHitsGridItem}
+            <Hits mod="sk-hits-list" hitsPerPage={hitsPerPage} itemComponent={ItemComponent}
               sourceFilter={sourceFilter}/>
             <NoHits/>
           </LayoutResults>
