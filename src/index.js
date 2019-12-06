@@ -41,12 +41,15 @@ export default function(props) {
   return (
     <SearchkitProvider searchkit={searchkit}>
       <Layout>
-        <SearchBox
-          autofocus={true}
-          searchOnChange={true}
-          prefixQueryFields={prefixQueryFields}/>
         <LayoutBody>
-          <SideBar>{filterElements}</SideBar>
+          <SideBar>
+            <SearchBox
+              autofocus={true}
+              searchOnChange={true}
+              prefixQueryFields={prefixQueryFields}
+            />
+            {filterElements}
+          </SideBar>
           <LayoutResults>
             <ActionBar>
 
