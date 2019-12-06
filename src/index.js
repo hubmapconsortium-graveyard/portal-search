@@ -7,7 +7,7 @@ import {
     DynamicRangeFilter,
     ActionBar, ActionBarRow, HitsStats, SelectedFilters,
     ResetFilters, MovieHitsGridItem, NoHits,
-    Hits, Layout, TopBar, LayoutBody, SideBar
+    Hits, Layout, TopBar, LayoutBody, SideBar, Pagination
 } from 'searchkit';
 
 function ItemComponent(props) {
@@ -66,6 +66,7 @@ export default function(props) {
             <Hits mod="sk-hits-list" hitsPerPage={hitsPerPage} itemComponent={ItemComponent}
               sourceFilter={sourceFilter}/>
             <NoHits/>
+            <Pagination showNumbers={true}/>
           </LayoutResults>
         </LayoutBody>
       </Layout>
