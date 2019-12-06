@@ -11,14 +11,14 @@ export CI=true
 
 PATH=$PATH:`npm bin`
 
-# start changelog
-# diff CHANGELOG.md <(curl https://raw.githubusercontent.com/hubmapconsortium/portal-search/master/CHANGELOG.md) \
-#   && die 'Update CHANGELOG.md'
-# end changelog
+start changelog
+diff CHANGELOG.md <(curl https://raw.githubusercontent.com/hubmapconsortium/portal-search/master/CHANGELOG.md) \
+  && die 'Update CHANGELOG.md'
+end changelog
 
-# start lint
-# eslint src
-# end lint
+start lint
+eslint src
+end lint
 
 # start test
 # npm test
