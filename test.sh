@@ -16,9 +16,9 @@ diff CHANGELOG.md <(curl https://raw.githubusercontent.com/hubmapconsortium/port
   && die 'Update CHANGELOG.md'
 end changelog
 
-# start lint
-# eslint src
-# end lint
+start lint
+eslint src
+end lint
 
 # start test
 # npm test
