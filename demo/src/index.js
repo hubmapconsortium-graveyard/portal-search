@@ -7,7 +7,7 @@ render(
   <Search
     apiUrl='http://demo.searchkit.co/api/movies/'
     prefixQueryFields={["actors^1","type^2","languages","title^10"]}
-    sourceFilter={["title", "poster", "imdbId"]}
+    sourceFilter={["title"]}
     hitsPerPage={5}
     filters={[
       {

@@ -10,7 +10,7 @@ import {
     Hits, Layout, TopBar, LayoutBody, SideBar, Pagination
 } from 'searchkit';
 
-function ItemComponent(props) {
+function DebugItem(props) {
   return (
     <pre>
       {JSON.stringify(props, false, 2)}
@@ -18,41 +18,30 @@ function ItemComponent(props) {
   );
 }
 
-class MovieHitsTable extends React.Component {
-
-  render(){
-    const { hits } = this.props
+function makeTableComponent(fields) {
+  return function ResultsTable(props) {
+    const { hits } = props;
     return (
-      <div style={{width: '100%', boxSizing: 'border-box', padding: 8}}>
-        <table className="sk-table sk-table-striped" style={{width: '100%', boxSizing: 'border-box'}}>
+        <table className="sk-table sk-table-striped" style={{width: '100%'}}>
           <thead>
             <tr>
-              <th></th>
-              <th>Title</th>
-              <th>Year</th>
-              <th>Rating</th>
+              {fields.map(field => <th key={field}>{field}</th>)}
             </tr>
           </thead>
           <tbody>
             {hits.map(hit => (
               <tr key={hit._id}>
-                <td style={{margin: 0, padding: 0, width: 40}}>
-                  <img data-qa="poster" src={hit._source.poster} style={{width: 40}}/>
-                </td>
-                <td>{hit._source.title}</td>
-                <td>{hit._source.year}</td>
-                <td>{hit._source.imdbRating}</td>
+                {fields.map(field => <td key={field}>{hit._source[field]}</td>)}
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
     )
   }
 }
 
 export default function(props) {
-  const { apiUrl, prefixQueryFields, filters, sourceFilter, hitsPerPage } = props;
+  const { apiUrl, prefixQueryFields, filters, sourceFilter, hitsPerPage, debug } = props;
   const searchkit = new SearchkitManager(apiUrl);
 
   const filterTypes = {
@@ -96,10 +85,13 @@ export default function(props) {
               </ActionBarRow>
 
             </ActionBar>
+            {debug && <Hits mod="sk-hits-list" hitsPerPage={hitsPerPage} itemComponent={DebugItem}
+              sourceFilter={sourceFilter}/>}
+
             <Hits
               mod="sk-hits-list"
               hitsPerPage={hitsPerPage}
-              listComponent={MovieHitsTable}
+              listComponent={makeTableComponent(sourceFilter)}
               sourceFilter={sourceFilter}
             />
             <NoHits/>
