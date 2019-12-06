@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
   SearchkitManager, SearchkitProvider, SearchBox,
-  HierarchicalMenuFilter, RefinementListFilter, LayoutResults,
-  MenuFilter, RangeFilter, NumericRefinementListFilter,
-  DynamicRangeFilter,
+  LayoutResults,
   ActionBar, ActionBarRow, HitsStats, SelectedFilters,
-  ResetFilters, MovieHitsGridItem, NoHits,
-  Hits, Layout, TopBar, LayoutBody, SideBar, Pagination,
+  ResetFilters, NoHits,
+  Hits, Layout, LayoutBody, SideBar, Pagination,
 } from 'searchkit';
 
 import * as filterTypes from 'searchkit';
