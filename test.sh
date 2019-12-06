@@ -33,6 +33,6 @@ end lint
 start build
 npm run build
 for F in portal-search.js	portal-search.min.js; do
-  [ -e umd/$F ] || die "$F is missing from UMD build"
+  [ -e umd/@hubmap/$F ] || die "$F is missing from UMD build"
 done
 end build

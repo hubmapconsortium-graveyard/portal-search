@@ -1,6 +1,6 @@
 {
-  "name": "portal-search",
-  "version": "1.0.0",
+  "name": "@hubmap/portal-search",
+  "version": "0.0.1",
   "description": "portal-search React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -40,10 +40,10 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
-  "author": "",
-  "homepage": "",
+  "author": "C McCallum",
+  "homepage": "https://github.com/hubmapconsortium/portal-search/",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/hubmapconsortium/portal-search/",
   "keywords": [
     "react-component"
   ]
