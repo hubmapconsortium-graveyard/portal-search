@@ -1,13 +1,13 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react';
 
 import {
-    SearchkitManager, SearchkitProvider, SearchBox,
-    HierarchicalMenuFilter, RefinementListFilter, LayoutResults,
-    MenuFilter, RangeFilter, NumericRefinementListFilter,
-    DynamicRangeFilter,
-    ActionBar, ActionBarRow, HitsStats, SelectedFilters,
-    ResetFilters, MovieHitsGridItem, NoHits,
-    Hits, Layout, TopBar, LayoutBody, SideBar, Pagination
+  SearchkitManager, SearchkitProvider, SearchBox,
+  HierarchicalMenuFilter, RefinementListFilter, LayoutResults,
+  MenuFilter, RangeFilter, NumericRefinementListFilter,
+  DynamicRangeFilter,
+  ActionBar, ActionBarRow, HitsStats, SelectedFilters,
+  ResetFilters, MovieHitsGridItem, NoHits,
+  Hits, Layout, TopBar, LayoutBody, SideBar, Pagination,
 } from 'searchkit';
 
 import * as filterTypes from 'searchkit';
@@ -25,34 +25,34 @@ function makeTableComponent(fields) {
   return function ResultsTable(props) {
     const { hits } = props;
     return (
-        <table className="sk-table sk-table-striped" style={{width: '100%'}}>
-          <thead>
-            <tr>
-              {fields.map(field => <th key={field}>{field}</th>)}
+      <table className="sk-table sk-table-striped" style={{ width: '100%' }}>
+        <thead>
+          <tr>
+            {fields.map((field) => <th key={field}>{field}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {hits.map((hit) => (
+            <tr key={hit._id}>
+              {fields.map((field) => <td key={field}>{hit._source[field]}</td>)}
             </tr>
-          </thead>
-          <tbody>
-            {hits.map(hit => (
-              <tr key={hit._id}>
-                {fields.map(field => <td key={field}>{hit._source[field]}</td>)}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-    )
-  }
+          ))}
+        </tbody>
+      </table>
+    );
+  };
 }
 
-export default function(props) {
-  const { apiUrl, prefixQueryFields, filters, sourceFilter, hitsPerPage, debug } = props;
+export default function (props) {
+  const {
+    apiUrl, prefixQueryFields, filters, sourceFilter, hitsPerPage, debug,
+  } = props;
   const searchkit = new SearchkitManager(apiUrl);
 
-  const filterElements = filters.map(def =>
-    React.createElement(
-      filterTypes[def.type],
-      def.props
-    )
-  );
+  const filterElements = filters.map((def) => React.createElement(
+    filterTypes[def.type],
+    def.props,
+  ));
 
   return (
     <SearchkitProvider searchkit={searchkit}>
@@ -60,8 +60,8 @@ export default function(props) {
         <LayoutBody>
           <SideBar>
             <SearchBox
-              autofocus={true}
-              searchOnChange={true}
+              autofocus
+              searchOnChange
               prefixQueryFields={prefixQueryFields}
             />
             {filterElements}
@@ -70,17 +70,23 @@ export default function(props) {
             <ActionBar>
 
               <ActionBarRow>
-                <HitsStats/>
+                <HitsStats />
               </ActionBarRow>
 
               <ActionBarRow>
-                <SelectedFilters/>
-                <ResetFilters/>
+                <SelectedFilters />
+                <ResetFilters />
               </ActionBarRow>
 
             </ActionBar>
-            {debug && <Hits mod="sk-hits-list" hitsPerPage={hitsPerPage} itemComponent={DebugItem}
-              sourceFilter={sourceFilter}/>}
+            {debug && (
+            <Hits
+              mod="sk-hits-list"
+              hitsPerPage={hitsPerPage}
+              itemComponent={DebugItem}
+              sourceFilter={sourceFilter}
+            />
+            )}
 
             <Hits
               mod="sk-hits-list"
@@ -88,8 +94,8 @@ export default function(props) {
               listComponent={makeTableComponent(sourceFilter)}
               sourceFilter={sourceFilter}
             />
-            <NoHits/>
-            <Pagination showNumbers={true}/>
+            <NoHits />
+            <Pagination showNumbers />
           </LayoutResults>
         </LayoutBody>
       </Layout>
