@@ -6,9 +6,9 @@ import {
   ActionBar, ActionBarRow, HitsStats, SelectedFilters,
   ResetFilters, NoHits,
   Hits, Layout, LayoutBody, SideBar, Pagination,
-} from 'searchkit';
+} from 'searchkit'; // eslint-disable-line import/no-duplicates
 
-import * as filterTypes from 'searchkit';
+import * as filterTypes from 'searchkit'; // eslint-disable-line import/no-duplicates
 // There is more in the name space, but we only need the filterTypes.
 
 function DebugItem(props) {
@@ -31,8 +31,16 @@ function makeTableComponent(fields) {
         </thead>
         <tbody>
           {hits.map((hit) => (
-            <tr key={hit._id}>
-              {fields.map((field) => <td key={field}>{hit._source[field]}</td>)}
+            <tr
+              key={
+                // eslint-disable-next-line no-underscore-dangle
+                hit._id
+              }
+            >
+              {fields.map(
+                // eslint-disable-next-line no-underscore-dangle
+                (field) => <td key={field}>{hit._source[field]}</td>,
+              )}
             </tr>
           ))}
         </tbody>
