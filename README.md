@@ -1,5 +1,7 @@
 # portal-search
-HuBMAP wrapper for Searchkit
+A simple, opinionated wrapper for [Searchkit](http://www.searchkit.co/).
+
+[NPM](https://www.npmjs.com/package/@hubmap/portal-search)
 
 ## Development
 
