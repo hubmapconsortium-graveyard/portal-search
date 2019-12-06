@@ -10,6 +10,9 @@ import {
     Hits, Layout, TopBar, LayoutBody, SideBar, Pagination
 } from 'searchkit';
 
+import * as filterTypes from 'searchkit';
+// There is more in the name space, but we only need the filterTypes.
+
 function DebugItem(props) {
   return (
     <pre>
@@ -43,15 +46,6 @@ function makeTableComponent(fields) {
 export default function(props) {
   const { apiUrl, prefixQueryFields, filters, sourceFilter, hitsPerPage, debug } = props;
   const searchkit = new SearchkitManager(apiUrl);
-
-  const filterTypes = {
-    hierarchical: HierarchicalMenuFilter,
-    refinement: RefinementListFilter,
-    menu: MenuFilter,
-    range: RangeFilter,
-    numeric: NumericRefinementListFilter,
-    dynamic: DynamicRangeFilter,
-  }
 
   const filterElements = filters.map(def =>
     React.createElement(

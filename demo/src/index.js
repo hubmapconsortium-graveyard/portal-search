@@ -11,7 +11,7 @@ render(
     hitsPerPage={5}
     filters={[
       {
-        type: 'hierarchical',
+        type: 'HierarchicalMenuFilter',
         props: {
           id: 'categories',
           fields: ['type.raw', 'genres.raw'],
@@ -19,7 +19,7 @@ render(
         },
       },
       {
-        type: 'refinement',
+        type: 'RefinementListFilter',
         props: {
           id: 'actors',
           title: 'Actors!',
