@@ -30,9 +30,9 @@ PATH=$PATH:`npm bin`
 # echo 'NOTE: Server is still running.'
 # end cypress
 
-# start build
-# npm run build
-# for F in vitessce.js vitessce.min.js main.css; do
-#   [ -e umd/$F ] || die "$F is missing from UMD build"
-# done
-# end build
+start build
+npm run build
+for F in portal-search.js	portal-search.min.js; do
+  [ -e umd/$F ] || die "$F is missing from UMD build"
+done
+end build
