@@ -3,7 +3,7 @@ module.exports = {
   npm: {
     esModules: true,
     umd: {
-      global: 'hubmap_portal_search',
+      global: 'hubmapPortalSearch',
       externals: {
         react: 'React'
       }

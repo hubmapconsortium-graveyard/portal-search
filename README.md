@@ -3,6 +3,10 @@ A simple, opinionated wrapper for [Searchkit](http://www.searchkit.co/).
 
 [NPM](https://www.npmjs.com/package/@hubmap/portal-search)
 
+## Usage
+
+The [demo source code](demo/src/index.js) has been commented to explain usage.
+
 ## Development
 
 Checkout the project, `cd`, and then:
