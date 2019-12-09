@@ -82,16 +82,10 @@ export default function (props) {
           </SideBar>
           <LayoutResults>
             <ActionBar>
-
-              <ActionBarRow>
-                <HitsStats />
-              </ActionBarRow>
-
               <ActionBarRow>
                 <SelectedFilters />
                 <ResetFilters />
               </ActionBarRow>
-
             </ActionBar>
             {debug && (
             <Hits
