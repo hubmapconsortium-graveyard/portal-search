@@ -39,7 +39,13 @@ function makeTableComponent(fields) {
             >
               {fields.map(
                 // eslint-disable-next-line no-underscore-dangle
-                (field) => <td key={field}>{hit._source[field]}</td>,
+                (field) => (
+                  <td key={field}>
+                    <a href="#" style={{display: 'block'}}>
+                      {hit._source[field]}
+                    </a>
+                  </td>
+                ),
               )}
             </tr>
           ))}
