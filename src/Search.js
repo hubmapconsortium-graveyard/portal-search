@@ -3,7 +3,7 @@ import React from 'react';
 import {
   SearchkitManager, SearchkitProvider, SearchBox,
   LayoutResults,
-  ActionBar, ActionBarRow, HitsStats, SelectedFilters,
+  ActionBar, ActionBarRow, SelectedFilters,
   ResetFilters, NoHits,
   Hits, Layout, LayoutBody, SideBar, Pagination,
 } from 'searchkit'; // eslint-disable-line import/no-duplicates
@@ -22,6 +22,7 @@ function DebugItem(props) {
 function makeTableComponent(fields, detailsUrlPrefix, idField) {
   return function ResultsTable(props) {
     const { hits } = props;
+    /* eslint-disable no-underscore-dangle */
     return (
       <table className="sk-table sk-table-striped" style={{ width: '100%' }}>
         <thead>
@@ -31,20 +32,15 @@ function makeTableComponent(fields, detailsUrlPrefix, idField) {
         </thead>
         <tbody>
           {hits.map((hit) => (
-            <tr
-              key={
-                // eslint-disable-next-line no-underscore-dangle
-                hit._id
-              }
-            >
+            <tr key={hit._id}>
               {fields.map(
                 (field) => (
                   <td key={field}>
-                    <a href={detailsUrlPrefix + hit._source[idField]} style={{display: 'block'}}>
-                      {
-                        // eslint-disable-next-line no-underscore-dangle
-                        hit._source[field]
-                      }
+                    <a
+                      href={detailsUrlPrefix + hit._source[idField]}
+                      style={{ display: 'block' }}
+                    >
+                      {hit._source[field]}
                     </a>
                   </td>
                 ),
@@ -54,6 +50,7 @@ function makeTableComponent(fields, detailsUrlPrefix, idField) {
         </tbody>
       </table>
     );
+    /* eslint-enable no-underscore-dangle */
   };
 }
 
