@@ -3,7 +3,7 @@ import hubmapPortalSearch from '../../src';
 hubmapPortalSearch.renderSearch('demo', {
   apiUrl: 'http://demo.searchkit.co/api/movies/',
   prefixQueryFields: ['actors^1','type^2','languages','title^10'],
-  sourceFilter: ['title', 'actors'],
+  resultFields: ['title', 'actors'],
   hitsPerPage: 5,
   filters: [
     {

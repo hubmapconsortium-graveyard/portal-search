@@ -38,11 +38,13 @@ function makeTableComponent(fields) {
               }
             >
               {fields.map(
-                // eslint-disable-next-line no-underscore-dangle
                 (field) => (
                   <td key={field}>
                     <a href="#" style={{display: 'block'}}>
-                      {hit._source[field]}
+                      {
+                        // eslint-disable-next-line no-underscore-dangle
+                        hit._source[field]
+                      }
                     </a>
                   </td>
                 ),
@@ -57,7 +59,7 @@ function makeTableComponent(fields) {
 
 export default function (props) {
   const {
-    apiUrl, prefixQueryFields, filters, sourceFilter, hitsPerPage, debug,
+    apiUrl, prefixQueryFields, filters, resultFields, hitsPerPage, debug,
   } = props;
   const searchkit = new SearchkitManager(apiUrl);
 
@@ -96,15 +98,15 @@ export default function (props) {
               mod="sk-hits-list"
               hitsPerPage={hitsPerPage}
               itemComponent={DebugItem}
-              sourceFilter={sourceFilter}
+              sourceFilter={resultFields}
             />
             )}
 
             <Hits
               mod="sk-hits-list"
               hitsPerPage={hitsPerPage}
-              listComponent={makeTableComponent(sourceFilter)}
-              sourceFilter={sourceFilter}
+              listComponent={makeTableComponent(resultFields)}
+              sourceFilter={resultFields}
             />
             <NoHits />
             <Pagination showNumbers />
