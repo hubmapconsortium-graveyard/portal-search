@@ -26,7 +26,7 @@ hubmapPortalSearch.renderSearch(
     // Search results field which will be appended to detailsUrlPrefix:
     idField: 'imdbId',
     // Search results fields to display in table:
-    resultFields: ['imdbId', 'title', 'actors'],
+    resultFields: ['title', 'actors'],
     // Default hitsPerPage is 10:
     hitsPerPage: 5,
     // Sidebar facet configuration;

@@ -19,7 +19,7 @@ function DebugItem(props) {
   );
 }
 
-function makeTableComponent(fields) {
+function makeTableComponent(fields, detailsUrlPrefix, idField) {
   return function ResultsTable(props) {
     const { hits } = props;
     return (
@@ -40,7 +40,7 @@ function makeTableComponent(fields) {
               {fields.map(
                 (field) => (
                   <td key={field}>
-                    <a href="#" style={{display: 'block'}}>
+                    <a href={detailsUrlPrefix + hit._source[idField]} style={{display: 'block'}}>
                       {
                         // eslint-disable-next-line no-underscore-dangle
                         hit._source[field]
@@ -59,8 +59,9 @@ function makeTableComponent(fields) {
 
 export default function (props) {
   const {
-    apiUrl, prefixQueryFields, filters, resultFields, hitsPerPage, debug,
+    apiUrl, prefixQueryFields, filters, detailsUrlPrefix, idField, resultFields, hitsPerPage, debug,
   } = props;
+  const resultFieldsPlusId = [...resultFields, idField];
   const searchkit = new SearchkitManager(apiUrl);
 
   const filterElements = filters.map((def) => React.createElement(
@@ -92,15 +93,15 @@ export default function (props) {
               mod="sk-hits-list"
               hitsPerPage={hitsPerPage}
               itemComponent={DebugItem}
-              sourceFilter={resultFields}
+              sourceFilter={resultFieldsPlusId}
             />
             )}
 
             <Hits
               mod="sk-hits-list"
               hitsPerPage={hitsPerPage}
-              listComponent={makeTableComponent(resultFields)}
-              sourceFilter={resultFields}
+              listComponent={makeTableComponent(resultFields, detailsUrlPrefix, idField)}
+              sourceFilter={resultFieldsPlusId}
             />
             <NoHits />
             <Pagination showNumbers />
