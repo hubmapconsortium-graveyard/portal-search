@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.0.3 - in progress
+## [0.0.3](https://github.com/hubmapconsortium/portal-search/tree/v0.0.3) - 2019-04-15
 ### Added
 - Allow HTTP headers to be passed.
 

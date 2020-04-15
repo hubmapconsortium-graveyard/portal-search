@@ -1,6 +1,6 @@
 {
   "name": "@hubmap/portal-search",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "portal-search React component",
   "main": "lib/index.js",
   "module": "es/index.js",
