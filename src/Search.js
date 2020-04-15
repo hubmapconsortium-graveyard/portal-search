@@ -60,7 +60,7 @@ export default function (props) {
     idField, resultFields, hitsPerPage, debug, httpHeaders,
   } = props;
   const resultFieldsPlusId = [...resultFields, idField];
-  const searchkit = new SearchkitManager(apiUrl, {httpHeaders});
+  const searchkit = new SearchkitManager(apiUrl, { httpHeaders });
 
   const filterElements = filters.map((def) => React.createElement(
     filterTypes[def.type],
