@@ -51,6 +51,9 @@ hubmapPortalSearch.renderSearch(
           size: 10
         },
       }
-    ]
+    ],
+    httpHeaders: {
+      'x-bogus-header': 'bogus-value'
+    }
   }
 );
