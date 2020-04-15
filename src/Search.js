@@ -58,9 +58,10 @@ export default function (props) {
   const {
     apiUrl, prefixQueryFields, filters, detailsUrlPrefix,
     idField, resultFields, hitsPerPage, debug, httpHeaders,
+    searchUrlPath='_search'
   } = props;
   const resultFieldsPlusId = [...resultFields, idField];
-  const searchkit = new SearchkitManager(apiUrl, { httpHeaders });
+  const searchkit = new SearchkitManager(apiUrl, { httpHeaders, searchUrlPath });
 
   const filterElements = filters.map((def) => React.createElement(
     filterTypes[def.type],

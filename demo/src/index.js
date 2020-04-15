@@ -18,7 +18,10 @@ hubmapPortalSearch.renderSearch(
   'demo',
   {
     // Elasticsearch instance to hit with queries:
-    apiUrl: 'http://demo.searchkit.co/api/movies/',
+    apiUrl: 'http://demo.searchkit.co/api/movies/_search',
+    // HuBMAP "helpfully" does not use the "_search" default;
+    // I think we'll just make a longer apiUrl, with an empty string here.
+    searchUrlPath: '',
     // Fields to search, and whether they have extra weight:
     prefixQueryFields: ['actors^1','type^2','languages','title^10'],
     // Prefix for details links:
