@@ -65,7 +65,15 @@ export default function (props) {
 
   const filterElements = filters.map((def) => {
     const Filter = filterTypes[def.type];
-    return <Filter {...def.props} />;
+    const style = def.props.id === 'categories'
+      ? {display: 'None'} : {};
+    return (
+      <div style={style}>
+        <Filter
+          {...def.props}
+        />
+      </div>
+    );
   });
 
   return (
