@@ -63,10 +63,10 @@ export default function (props) {
   const resultFieldsPlusId = [...resultFields, idField];
   const searchkit = new SearchkitManager(apiUrl, { httpHeaders, searchUrlPath });
 
-  const filterElements = filters.map((def) => React.createElement(
-    filterTypes[def.type],
-    def.props,
-  ));
+  const filterElements = filters.map((def) => {
+    const Filter = filterTypes[def.type];
+    return <Filter {...def.props} />;
+  });
 
   return (
     <SearchkitProvider searchkit={searchkit}>
