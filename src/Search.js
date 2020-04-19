@@ -54,6 +54,24 @@ function makeTableComponent(fields, detailsUrlPrefix, idField) {
   };
 }
 
+function SelectedFilter(props) {
+  // Copy and paste from
+  // http://docs.searchkit.co/v0.8.3/docs/components/navigation/selected-filters.html
+  // plus typo corrections.
+  return (
+    <div className={props.bemBlocks.option()
+      .mix(props.bemBlocks.container("item"))
+      .mix(`selected-filter--${props.filterId}`)}>
+      <div className={props.bemBlocks.option("name")}>{props.labelKey}!: {props.labelValue}</div>
+      <div className={props.bemBlocks.option("remove-action")} onClick={props.removeFilter}>x</div>
+    </div>
+  );
+}
+
+function MaskedSelectedFilters(props) {
+  return <SelectedFilters itemComponent={SelectedFilter} />
+}
+
 export default function (props) {
   const {
     apiUrl, prefixQueryFields, filters, detailsUrlPrefix,
@@ -92,7 +110,7 @@ export default function (props) {
           <LayoutResults>
             <ActionBar>
               <ActionBarRow>
-                <SelectedFilters />
+                <MaskedSelectedFilters />
               </ActionBarRow>
             </ActionBar>
             {debug && (
