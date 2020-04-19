@@ -58,6 +58,7 @@ export default function (props) {
   const {
     apiUrl, prefixQueryFields, filters, detailsUrlPrefix,
     idField, resultFields, hitsPerPage, debug, httpHeaders,
+    hiddenFilterIds = [],
     searchUrlPath = '_search',
   } = props;
   const resultFieldsPlusId = [...resultFields, idField];
@@ -65,8 +66,8 @@ export default function (props) {
 
   const filterElements = filters.map((def) => {
     const Filter = filterTypes[def.type];
-    const style = def.props.id === 'categories'
-      ? {display: 'None'} : {};
+    const style = hiddenFilterIds.indexOf(def.props.id) === -1
+      ? {} : {display: 'None'};
     return (
       <div style={style}>
         <Filter
