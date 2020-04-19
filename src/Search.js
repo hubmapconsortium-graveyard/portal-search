@@ -93,7 +93,6 @@ export default function (props) {
             <ActionBar>
               <ActionBarRow>
                 <SelectedFilters />
-                <ResetFilters />
               </ActionBarRow>
             </ActionBar>
             {debug && (
