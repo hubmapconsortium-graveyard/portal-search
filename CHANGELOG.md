@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.5 - in progress
+### Added
+- Added hiddenFilterIds.
+
 ## 0.0.4 - 2019-04-15
 ### Added
 - Allow a non-default `searchUrlPath`.
