@@ -68,7 +68,7 @@ export default function (props) {
   function MaskedSelectedFilters(props) {
     const SelectedFilter = (props) => {
       const style = hiddenFilterIds.indexOf(props.filterId) === -1
-        ? {} : {display: 'None'};
+        ? {} : { display: 'None' };
       // Copy and paste from
       // http://docs.searchkit.co/v0.8.3/docs/components/navigation/selected-filters.html
       // plus typo corrections and wrapping div.
@@ -76,21 +76,21 @@ export default function (props) {
         <div
           style={style}
           className={props.bemBlocks.option()
-            .mix(props.bemBlocks.container("item"))
+            .mix(props.bemBlocks.container('item'))
             .mix(`selected-filter--${props.filterId}`)}
         >
-          <div className={props.bemBlocks.option("name")}>{props.labelKey}: {props.labelValue}</div>
-          <div className={props.bemBlocks.option("remove-action")} onClick={props.removeFilter}>x</div>
+          <div className={props.bemBlocks.option('name')}>{props.labelKey}: {props.labelValue}</div>
+          <div className={props.bemBlocks.option('remove-action')} onClick={props.removeFilter}>x</div>
         </div>
       );
-    }
-    return <SelectedFilters itemComponent={SelectedFilter} />
+    };
+    return <SelectedFilters itemComponent={SelectedFilter} />;
   }
 
   const filterElements = filters.map((def) => {
     const Filter = filterTypes[def.type];
     const style = hiddenFilterIds.indexOf(def.props.id) === -1
-      ? {} : {display: 'None'};
+      ? {} : { display: 'None' };
     return (
       <div style={style}>
         <Filter
