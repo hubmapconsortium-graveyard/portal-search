@@ -72,6 +72,8 @@ export default function (props) {
       // Copy and paste from
       // http://docs.searchkit.co/v0.8.3/docs/components/navigation/selected-filters.html
       // plus typo corrections and wrapping div.
+      /* eslint-disable jsx-a11y/click-events-have-key-events */
+      /* eslint-disable jsx-a11y/no-static-element-interactions */
       return (
         <div
           style={style}
@@ -79,10 +81,20 @@ export default function (props) {
             .mix(filterProps.bemBlocks.container('item'))
             .mix(`selected-filter--${filterProps.filterId}`)}
         >
-          <div className={filterProps.bemBlocks.option('name')}>{filterProps.labelKey}: {filterProps.labelValue}</div>
-          <div className={filterProps.bemBlocks.option('remove-action')} onClick={filterProps.removeFilter}>x</div>
+          <div
+            className={filterProps.bemBlocks.option('name')}
+          >
+            {filterProps.labelKey}: {filterProps.labelValue}
+          </div>
+          <div
+            className={filterProps.bemBlocks.option('remove-action')}
+            onClick={filterProps.removeFilter}
+          >
+            x
+          </div>
         </div>
       );
+      /* eslint-enable */
     };
     return <SelectedFilters itemComponent={SelectedFilter} />;
   }
@@ -91,6 +103,7 @@ export default function (props) {
     const Filter = filterTypes[def.type];
     const style = hiddenFilterIds.indexOf(def.props.id) === -1
       ? {} : { display: 'None' };
+    /* eslint-disable react/jsx-props-no-spreading */
     return (
       <div style={style}>
         <Filter
@@ -98,6 +111,7 @@ export default function (props) {
         />
       </div>
     );
+    /* eslint-enable */
   });
 
   return (
