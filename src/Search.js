@@ -4,7 +4,7 @@ import {
   SearchkitManager, SearchkitProvider, SearchBox,
   LayoutResults,
   ActionBar, ActionBarRow, SelectedFilters,
-  ResetFilters, NoHits,
+  NoHits,
   Hits, Layout, LayoutBody, SideBar, Pagination,
 } from 'searchkit'; // eslint-disable-line import/no-duplicates
 
@@ -65,9 +65,9 @@ export default function (props) {
   const resultFieldsPlusId = [...resultFields, idField];
   const searchkit = new SearchkitManager(apiUrl, { httpHeaders, searchUrlPath });
 
-  function MaskedSelectedFilters(props) {
-    const SelectedFilter = (props) => {
-      const style = hiddenFilterIds.indexOf(props.filterId) === -1
+  function MaskedSelectedFilters() {
+    const SelectedFilter = (filterProps) => {
+      const style = hiddenFilterIds.indexOf(filterProps.filterId) === -1
         ? {} : { display: 'None' };
       // Copy and paste from
       // http://docs.searchkit.co/v0.8.3/docs/components/navigation/selected-filters.html
@@ -75,12 +75,12 @@ export default function (props) {
       return (
         <div
           style={style}
-          className={props.bemBlocks.option()
-            .mix(props.bemBlocks.container('item'))
-            .mix(`selected-filter--${props.filterId}`)}
+          className={filterProps.bemBlocks.option()
+            .mix(filterProps.bemBlocks.container('item'))
+            .mix(`selected-filter--${filterProps.filterId}`)}
         >
-          <div className={props.bemBlocks.option('name')}>{props.labelKey}: {props.labelValue}</div>
-          <div className={props.bemBlocks.option('remove-action')} onClick={props.removeFilter}>x</div>
+          <div className={filterProps.bemBlocks.option('name')}>{filterProps.labelKey}: {filterProps.labelValue}</div>
+          <div className={filterProps.bemBlocks.option('remove-action')} onClick={filterProps.removeFilter}>x</div>
         </div>
       );
     };
