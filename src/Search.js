@@ -4,7 +4,7 @@ import {
   SearchkitManager, SearchkitProvider, SearchBox,
   LayoutResults,
   ActionBar, ActionBarRow, SelectedFilters,
-  ResetFilters, NoHits,
+  NoHits,
   Hits, Layout, LayoutBody, SideBar, Pagination,
 } from 'searchkit'; // eslint-disable-line import/no-duplicates
 
@@ -54,19 +54,65 @@ function makeTableComponent(fields, detailsUrlPrefix, idField) {
   };
 }
 
+
 export default function (props) {
   const {
     apiUrl, prefixQueryFields, filters, detailsUrlPrefix,
     idField, resultFields, hitsPerPage, debug, httpHeaders,
+    hiddenFilterIds = [],
     searchUrlPath = '_search',
   } = props;
   const resultFieldsPlusId = [...resultFields, idField];
   const searchkit = new SearchkitManager(apiUrl, { httpHeaders, searchUrlPath });
 
-  const filterElements = filters.map((def) => React.createElement(
-    filterTypes[def.type],
-    def.props,
-  ));
+  function MaskedSelectedFilters() {
+    const SelectedFilter = (filterProps) => {
+      const style = hiddenFilterIds.indexOf(filterProps.filterId) === -1
+        ? {} : { display: 'None' };
+      // Copy and paste from
+      // http://docs.searchkit.co/v0.8.3/docs/components/navigation/selected-filters.html
+      // plus typo corrections and wrapping div.
+      /* eslint-disable jsx-a11y/click-events-have-key-events */
+      /* eslint-disable jsx-a11y/no-static-element-interactions */
+      return (
+        <div
+          style={style}
+          className={filterProps.bemBlocks.option()
+            .mix(filterProps.bemBlocks.container('item'))
+            .mix(`selected-filter--${filterProps.filterId}`)}
+        >
+          <div
+            className={filterProps.bemBlocks.option('name')}
+          >
+            {filterProps.labelKey}: {filterProps.labelValue}
+          </div>
+          <div
+            className={filterProps.bemBlocks.option('remove-action')}
+            onClick={filterProps.removeFilter}
+          >
+            x
+          </div>
+        </div>
+      );
+      /* eslint-enable */
+    };
+    return <SelectedFilters itemComponent={SelectedFilter} />;
+  }
+
+  const filterElements = filters.map((def) => {
+    const Filter = filterTypes[def.type];
+    const style = hiddenFilterIds.indexOf(def.props.id) === -1
+      ? {} : { display: 'None' };
+    /* eslint-disable react/jsx-props-no-spreading */
+    return (
+      <div style={style}>
+        <Filter
+          {...def.props}
+        />
+      </div>
+    );
+    /* eslint-enable */
+  });
 
   return (
     <SearchkitProvider searchkit={searchkit}>
@@ -83,8 +129,7 @@ export default function (props) {
           <LayoutResults>
             <ActionBar>
               <ActionBarRow>
-                <SelectedFilters />
-                <ResetFilters />
+                <MaskedSelectedFilters />
               </ActionBarRow>
             </ActionBar>
             {debug && (

@@ -57,6 +57,7 @@ hubmapPortalSearch.renderSearch(
     ],
     httpHeaders: {
       'x-bogus-header': 'bogus-value'
-    }
+    },
+    hiddenFilterIds: ['categories']
   }
 );
