@@ -131,10 +131,11 @@ export default function (props) {
             <ActionBar>
               <ActionBarRow>
                 <HitsStats translations={{
-                  "hitstats.results_found": "{hitCount} results found"
-                }}/>
+                  'hitstats.results_found': '{hitCount} results found',
+                }}
+                />
                 <MaskedSelectedFilters />
-                <SortingSelector options={sortOptions}/>
+                <SortingSelector options={sortOptions} />
               </ActionBarRow>
             </ActionBar>
             {debug && (
