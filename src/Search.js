@@ -2,9 +2,9 @@ import React from 'react';
 
 import {
   SearchkitManager, SearchkitProvider, SearchBox,
-  LayoutResults,
+  LayoutResults, SortingSelector,
   ActionBar, ActionBarRow, SelectedFilters,
-  NoHits,
+  NoHits, Select,
   Hits, Layout, LayoutBody, SideBar, Pagination,
 } from 'searchkit'; // eslint-disable-line import/no-duplicates
 
@@ -130,6 +130,14 @@ export default function (props) {
             <ActionBar>
               <ActionBarRow>
                 <MaskedSelectedFilters />
+                <SortingSelector
+                  listComponent={Select}
+                  options={[
+                    {label:"Relevance", field:"_score", order:"desc", defaultOption:true},
+                    {label:"Latest Releases", field:"released", order:"desc"},
+                    {label:"Earliest Releases", field:"released", order:"asc", key:"earliest"}
+                  ]}
+                />
               </ActionBarRow>
             </ActionBar>
             {debug && (
