@@ -4,7 +4,7 @@ import {
   SearchkitManager, SearchkitProvider, SearchBox,
   LayoutResults, SortingSelector,
   ActionBar, ActionBarRow, SelectedFilters,
-  NoHits,
+  NoHits, HitsStats,
   Hits, Layout, LayoutBody, SideBar, Pagination,
 } from 'searchkit'; // eslint-disable-line import/no-duplicates
 
@@ -130,6 +130,9 @@ export default function (props) {
           <LayoutResults>
             <ActionBar>
               <ActionBarRow>
+                <HitsStats translations={{
+                  "hitstats.results_found": "{hitCount} results found"
+                }}/>
                 <MaskedSelectedFilters />
                 <SortingSelector options={sortOptions}/>
               </ActionBarRow>
