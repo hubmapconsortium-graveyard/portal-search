@@ -4,7 +4,7 @@ import {
   SearchkitManager, SearchkitProvider, SearchBox,
   LayoutResults, SortingSelector,
   ActionBar, ActionBarRow, SelectedFilters,
-  NoHits, Select,
+  NoHits,
   Hits, Layout, LayoutBody, SideBar, Pagination,
 } from 'searchkit'; // eslint-disable-line import/no-duplicates
 
@@ -59,6 +59,7 @@ export default function (props) {
   const {
     apiUrl, prefixQueryFields, filters, detailsUrlPrefix,
     idField, resultFields, hitsPerPage, debug, httpHeaders,
+    sortOptions = [],
     hiddenFilterIds = [],
     searchUrlPath = '_search',
   } = props;
@@ -130,14 +131,7 @@ export default function (props) {
             <ActionBar>
               <ActionBarRow>
                 <MaskedSelectedFilters />
-                <SortingSelector
-                  listComponent={Select}
-                  options={[
-                    {label:"Relevance", field:"_score", order:"desc", defaultOption:true},
-                    {label:"Latest Releases", field:"released", order:"desc"},
-                    {label:"Earliest Releases", field:"released", order:"asc", key:"earliest"}
-                  ]}
-                />
+                <SortingSelector options={sortOptions}/>
               </ActionBarRow>
             </ActionBar>
             {debug && (
