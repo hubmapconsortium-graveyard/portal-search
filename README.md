@@ -1,3 +1,5 @@
+## 💥 *Deprecated and archived* 💥
+
 # portal-search
 A simple, opinionated wrapper for [Searchkit](http://www.searchkit.co/).
 
