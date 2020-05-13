@@ -3,6 +3,8 @@
 ## 0.0.5 - in progress
 ### Added
 - Added hiddenFilterIds.
+- Hit count.
+- Sort options.
 
 ## 0.0.4 - 2019-04-15
 ### Added
