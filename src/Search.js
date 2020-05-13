@@ -2,9 +2,9 @@ import React from 'react';
 
 import {
   SearchkitManager, SearchkitProvider, SearchBox,
-  LayoutResults,
+  LayoutResults, SortingSelector,
   ActionBar, ActionBarRow, SelectedFilters,
-  NoHits,
+  NoHits, HitsStats,
   Hits, Layout, LayoutBody, SideBar, Pagination,
 } from 'searchkit'; // eslint-disable-line import/no-duplicates
 
@@ -59,6 +59,7 @@ export default function (props) {
   const {
     apiUrl, prefixQueryFields, filters, detailsUrlPrefix,
     idField, resultFields, hitsPerPage, debug, httpHeaders,
+    sortOptions = [],
     hiddenFilterIds = [],
     searchUrlPath = '_search',
   } = props;
@@ -129,7 +130,12 @@ export default function (props) {
           <LayoutResults>
             <ActionBar>
               <ActionBarRow>
+                <HitsStats translations={{
+                  'hitstats.results_found': '{hitCount} results found',
+                }}
+                />
                 <MaskedSelectedFilters />
+                <SortingSelector options={sortOptions} />
               </ActionBarRow>
             </ActionBar>
             {debug && (

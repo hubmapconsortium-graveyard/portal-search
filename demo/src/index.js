@@ -32,6 +32,12 @@ hubmapPortalSearch.renderSearch(
     resultFields: ['title', 'actors'],
     // Default hitsPerPage is 10:
     hitsPerPage: 5,
+    // http://docs.searchkit.co/v2.0.0/components/sorting/sort.html
+    sortOptions: [
+      {label:"Relevance", field:"_score", order:"desc", defaultOption:true},
+      {label:"Latest Releases", field:"released", order:"desc"},
+      {label:"Earliest Releases", field:"released", order:"asc", key:"earliest"}
+    ],
     // Sidebar facet configuration;
     // "type" should be one of the filters described here:
     // http://docs.searchkit.co/stable/components/navigation/
